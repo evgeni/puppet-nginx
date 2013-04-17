@@ -28,9 +28,9 @@ class nginx::config (
     notify  => Service['nginx'],
   }
 
-  file { "/etc/nginx/sites-enabled/":
-    path    => "/etc/nginx/sites-enabled/",
+  file { '/etc/nginx/sites-enabled/':
     ensure  => directory,
+    path    => '/etc/nginx/sites-enabled/',
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
@@ -38,16 +38,15 @@ class nginx::config (
     purge   => true,
   }
 
-  file { "/etc/nginx/sites-available/":
-    path    => "/etc/nginx/sites-available/",
+  file { '/etc/nginx/sites-available/':
     ensure  => directory,
+    path    => '/etc/nginx/sites-available/',
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
     recurse => true,
     purge   => true,
   }
-
 
   $k = keys($vhosts)
   nginx::vhost_install { $k: config => $vhosts; }

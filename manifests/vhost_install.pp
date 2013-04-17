@@ -11,8 +11,9 @@ define nginx::vhost_install ($config) {
   $servername = strip("${name} ${altnames}")
 
   file { "/etc/nginx/sites-available/${name}.conf":
+    ensure  => present,
     path    => "/etc/nginx/sites-available/${name}.conf",
-    content => template('nginx/vhost.conf.erb'), 
+    content => template('nginx/vhost.conf.erb'),
     owner   => 'www-data',
     group   => 'www-data',
     mode    => '0644',
@@ -21,9 +22,9 @@ define nginx::vhost_install ($config) {
   }
 
   file { "/etc/nginx/sites-enabled/${name}.conf":
+    ensure  => link,
     path    => "/etc/nginx/sites-enabled/${name}.conf",
     target  => "/etc/nginx/sites-available/${name}.conf",
-    ensure  => link,
     require => File["/etc/nginx/sites-available/${name}.conf"],
     notify  => Service['nginx'],
   }
