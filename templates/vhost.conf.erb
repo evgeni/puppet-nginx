@@ -1,0 +1,36 @@
+server {
+<% if @listen -%>
+<% listen.each do |l| -%>
+  listen <%= l %>;
+<% end -%>
+<% end -%>
+<% if @ssllisten -%>
+<% ssllisten.each do |l| -%>
+  listen <%= l %> ssl;
+<% end -%>
+<% end -%>
+  root <%= root %>;
+  index index.html index.htm;
+
+  server_name <%= servername %>;
+
+<% if @strictname -%>
+  if ($http_host != "<%= name %>") {
+    rewrite ^ $scheme://<%= name %>$uri permanent;
+  }
+<% end -%>
+
+<% if @forcehttps -%>
+  if ($scheme != "https") {
+    rewrite ^ https://$http_host$uri permanent;
+  }
+<% end -%>
+
+<% if @ssllisten -%>
+  ssl_certificate <%= ssl_certificate %>;
+  ssl_certificate_key <%= ssl_certificate_key %>;
+<% end -%>
+
+  location / {
+  }
+}
