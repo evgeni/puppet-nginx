@@ -1,10 +1,10 @@
 name    'evgeni-nginx'
 version '0.0.1'
-source 'UNKNOWN'
+source 'http://github.com/evgeni/puppet-nginx'
 author 'evgeni'
 license 'Apache License, Version 2.0'
-summary 'UNKNOWN'
+summary 'yet another nginx module'
 description 'UNKNOWN'
-project_page 'UNKNOWN'
+project_page 'http://github.com/evgeni/puppet-nginx'
 
 dependency 'puppetlabs/stdlib', '>= 2.3.0'
