@@ -49,7 +49,7 @@ class nginx::config (
   }
 
   define nginx::config::generate_vhosts($config){
-    nginx::vhost_install { $name: 
+    nginx::vhost { $name: 
       altnames => $config[$name]['altnames'],
       strictname => $config[$name]['strictname'],
       forcehttps => $config[$name]['forcehttps'],

@@ -1,4 +1,4 @@
-define nginx::vhost_install (
+define nginx::vhost (
   $root = '/var/www',
   $listen = undef,
   $altnames = '',
