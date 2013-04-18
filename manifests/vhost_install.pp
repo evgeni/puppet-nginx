@@ -1,12 +1,13 @@
-define nginx::vhost_install ($config) {
-  $altnames = $config[$name]['altnames']
-  $strictname = $config[$name]['strictname']
-  $forcehttps = $config[$name]['forcehttps']
-  $root = $config[$name]['root']
-  $listen = $config[$name]['listen']
-  $ssllisten = $config[$name]['ssllisten']
-  $ssl_certificate = $config[$name]['ssl_certificate']
-  $ssl_certificate_key = $config[$name]['ssl_certificate_key']
+define nginx::vhost_install (
+  $root = '/var/www',
+  $listen = undef,
+  $altnames = '',
+  $strictname = false,
+  $forcehttps = false,
+  $ssllisten = undef,
+  $ssl_certificate = '',
+  $ssl_certificate_key = '',
+  ) {
 
   $servername = strip("${name} ${altnames}")
 
