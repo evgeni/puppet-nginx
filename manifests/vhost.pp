@@ -9,7 +9,12 @@ define nginx::vhost (
   $ssl_certificate_key = '',
   ) {
 
-  $servername = strip("${name} ${altnames}")
+  if is_array($altnames) {
+    $altnames_string = join($altnames, ' ')
+  } else {
+    $altnames_string = $altnames
+  }
+  $servername = strip("${name} ${altnames_string}")
 
   file { "/etc/nginx/sites-available/${name}.conf":
     ensure  => present,
