@@ -1,3 +1,9 @@
+# define: nginx::config::generate_vhosts
+#
+# This definition creates a nginx::vhost from a hash, which is typically
+# received from a YAML via hiera.
+# It should not be used directly. Use nginx::vhost instead.
+
 define nginx::config::generate_vhosts($config){
   nginx::vhost { $name:
     altnames            => $config[$name]['altnames'],
