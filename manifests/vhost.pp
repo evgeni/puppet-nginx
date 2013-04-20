@@ -1,3 +1,24 @@
+# define: nginx::vhost
+#
+# This definition creates a virtual host
+#
+# Parameters:
+#   [*root*]                - Path to the files
+#   [*listen*]              - Array of 'IP:port' or 'port' where to listen
+#                             NGINX will listen on port 80 on all IPv4 interfaces if empty
+#   [*altnames*]            - Alternative names this VHost should match (string or array)
+#   [*strictname*]          - Redirect requests for altnames to the main host (true|false)
+#   [*forcehttps*]          - Redirect HTTP to HTTPS (true|false)
+#   [*ssllisten*]           - Array of IP:Port or Port where to listen with SSL enabled
+#   [*ssl_certificate*]     - Path to the SSL certificate
+#   [*ssl_certificate_key*] - Path to the SSL private key
+#
+# Sample Usage:
+#  nginx::vhost { 'example.org':
+#    root => '/srv/www/example.org',
+#    altnames => ['www.example.org'],
+#  }
+
 define nginx::vhost (
   $root = '/var/www',
   $listen = undef,
