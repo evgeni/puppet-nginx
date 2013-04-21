@@ -6,6 +6,7 @@
 
 define nginx::config::generate_vhosts($config){
   nginx::vhost { $name:
+    priority            => $config[$name]['priority'],
     altnames            => $config[$name]['altnames'],
     strictname          => $config[$name]['strictname'],
     forcehttps          => $config[$name]['forcehttps'],

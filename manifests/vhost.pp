@@ -28,6 +28,7 @@ define nginx::vhost (
   $ssllisten = undef,
   $ssl_certificate = '',
   $ssl_certificate_key = '',
+  $priority = 10,
   ) {
 
   if is_array($altnames) {
@@ -48,9 +49,9 @@ define nginx::vhost (
     notify  => Service['nginx'],
   }
 
-  file { "/etc/nginx/sites-enabled/${name}.conf":
+  file { "/etc/nginx/sites-enabled/${priority}-${name}.conf":
     ensure  => link,
-    path    => "/etc/nginx/sites-enabled/${name}.conf",
+    path    => "/etc/nginx/sites-enabled/${priority}-${name}.conf",
     target  => "/etc/nginx/sites-available/${name}.conf",
     require => File["/etc/nginx/sites-available/${name}.conf"],
     notify  => Service['nginx'],
