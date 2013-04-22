@@ -36,6 +36,7 @@ class nginx::config (
     mode    => '0755',
     recurse => true,
     purge   => true,
+    require => Package['nginx'],
   }
 
   file { '/etc/nginx/sites-available/':
@@ -46,6 +47,7 @@ class nginx::config (
     mode    => '0755',
     recurse => true,
     purge   => true,
+    require => Package['nginx'],
   }
 
   $k = keys($vhosts)
