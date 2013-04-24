@@ -15,5 +15,6 @@ define nginx::config::generate_vhosts($config){
     ssllisten           => $config[$name]['ssllisten'],
     ssl_certificate     => $config[$name]['ssl_certificate'],
     ssl_certificate_key => $config[$name]['ssl_certificate_key'],
+    locations           => $config[$name]['locations'],
   }
 }

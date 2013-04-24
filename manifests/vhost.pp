@@ -29,6 +29,7 @@ define nginx::vhost (
   $ssl_certificate = '',
   $ssl_certificate_key = '',
   $priority = 10,
+  $locations = undef,
   ) {
 
   if is_array($altnames) {

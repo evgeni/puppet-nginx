@@ -31,6 +31,16 @@ server {
   ssl_certificate_key <%= ssl_certificate_key %>;
 <% end -%>
 
+<% if @locations -%>
+<% locations.each do |location| -%>
+  location <%= location[0] %> {
+<% location[1].each do |k,v| -%>
+    <%= k %> <%= v %>;
+<% end -%>
+  }
+<% end -%>
+<% else -%>
   location / {
   }
+<% end -%>
 }
