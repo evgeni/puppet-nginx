@@ -26,7 +26,7 @@ class nginx::package (
   }
 
   package { 'nginx':
-    ensure => $ensure,
+    ensure  => $ensure,
     require => File['/etc/apt/preferences.d/nginx.pref'],
   }
 }
