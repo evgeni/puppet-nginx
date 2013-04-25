@@ -1,0 +1,7 @@
+<% proxycache.each do |c| -%>
+proxy_cache_path <%= c[1]['path'] -%>
+ keys_zone=<%= c[0] %>:<% if c[1]['mem_size'] -%> mem_size=<%= c[1]['mem_size'] %><% else -%>10m<% end -%>
+<% if c[1]['levels'] -%> levels=<%= c[1]['levels'] %><% end -%>
+<% if c[1]['inactive'] -%> inactive=<%= c[1]['inactive'] %><% end -%>
+<% if c[1]['max_size'] -%> max_size=<%= c[1]['max_size'] %><% end -%>;
+<% end -%>
