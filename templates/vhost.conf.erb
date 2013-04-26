@@ -40,7 +40,17 @@ server {
   }
 <% end -%>
 <% else -%>
+<% if @proxy_pass -%>
+  location / {
+    proxy_pass  <%= proxy_pass %>;
+    include     /etc/nginx/proxy_params;
+<% if @proxy_cache -%>
+    proxy_cache <%= proxy_cache %>;
+<% end -%>
+  }
+<% else -%>
   location / {
   }
+<% end -%>
 <% end -%>
 }

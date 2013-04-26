@@ -30,6 +30,8 @@ define nginx::vhost (
   $ssl_certificate_key = '',
   $priority = 10,
   $locations = undef,
+  $proxy_pass = undef,
+  $proxy_cache = undef,
   ) {
 
   if is_array($altnames) {
