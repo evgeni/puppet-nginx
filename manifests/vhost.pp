@@ -43,11 +43,11 @@ define nginx::vhost (
 
   if $proxy_pass {
     $proxylocation = {'/' => {
-                           proxy_pass => $proxy_pass,
-                           proxy_cache => $proxy_cache,
-                           include => '/etc/nginx/proxy_params',
-                         }
-                     }
+      proxy_pass => $proxy_pass,
+      proxy_cache => $proxy_cache,
+      include => '/etc/nginx/proxy_params',
+      }
+    }
     $all_locations = merge($proxylocation, $locations)
   } else {
     $all_locations = $locations
