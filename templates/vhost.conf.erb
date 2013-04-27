@@ -31,26 +31,13 @@ server {
   ssl_certificate_key <%= ssl_certificate_key %>;
 <% end -%>
 
-<% if @locations -%>
-<% locations.each do |location| -%>
+<% all_locations.each do |location| -%>
   location <%= location[0] %> {
 <% location[1].each do |k,v| -%>
+<% if v != :undef  -%>
     <%= k %> <%= v %>;
 <% end -%>
-  }
-<% end -%>
-<% else -%>
-<% if @proxy_pass -%>
-  location / {
-    proxy_pass  <%= proxy_pass %>;
-    include     /etc/nginx/proxy_params;
-<% if @proxy_cache -%>
-    proxy_cache <%= proxy_cache %>;
 <% end -%>
   }
-<% else -%>
-  location / {
-  }
-<% end -%>
 <% end -%>
 }

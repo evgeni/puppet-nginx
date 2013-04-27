@@ -29,7 +29,7 @@ define nginx::vhost (
   $ssl_certificate = '',
   $ssl_certificate_key = '',
   $priority = 10,
-  $locations = undef,
+  $locations = {},
   $proxy_pass = undef,
   $proxy_cache = undef,
   ) {
@@ -40,6 +40,18 @@ define nginx::vhost (
     $altnames_string = $altnames
   }
   $servername = strip("${name} ${altnames_string}")
+
+  if $proxy_pass {
+    $proxylocation = {'/' => {
+                           proxy_pass => $proxy_pass,
+                           proxy_cache => $proxy_cache,
+                           include => '/etc/nginx/proxy_params',
+                         }
+                     }
+    $all_locations = merge($proxylocation, $locations)
+  } else {
+    $all_locations = $locations
+  }
 
   file { "/etc/nginx/sites-available/${name}.conf":
     ensure  => present,
