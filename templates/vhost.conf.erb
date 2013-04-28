@@ -1,13 +1,13 @@
 server {
 <% if @listen -%>
-<% listen.each do |l| -%>
+ <%- listen.each do |l| -%>
   listen <%= l %>;
-<% end -%>
+ <%- end -%>
 <% end -%>
 <% if @ssllisten -%>
-<% ssllisten.each do |l| -%>
+ <%- ssllisten.each do |l| -%>
   listen <%= l %> ssl;
-<% end -%>
+ <%- end -%>
 <% end -%>
   root <%= root %>;
   index index.html index.htm;
@@ -33,11 +33,11 @@ server {
 
 <% all_locations.each do |location| -%>
   location <%= location[0] %> {
-<% location[1].each do |k,v| -%>
-<% if v != :undef  -%>
+  <%- location[1].each do |k,v| -%>
+   <%- if v != :undef  -%>
     <%= k %> <%= v %>;
-<% end -%>
-<% end -%>
+   <%- end -%>
+  <%- end -%>
   }
 <% end -%>
 }
