@@ -32,6 +32,7 @@ define nginx::vhost (
   $locations = {},
   $proxy_pass = undef,
   $proxy_cache = undef,
+  $ownlog = true,
   ) {
 
   if is_array($altnames) {

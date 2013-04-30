@@ -14,6 +14,11 @@ server {
 
   server_name <%= servername %>;
 
+<% if @ownlog -%>
+  access_log /var/log/nginx/<%= name %>-access.log;
+  error_log /var/log/nginx/<%= name %>-error.log;
+<% end -%>
+
 <% if @strictname -%>
   if ($http_host != "<%= name %>") {
     rewrite ^ $scheme://<%= name %>$uri permanent;
