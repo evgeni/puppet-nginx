@@ -42,7 +42,10 @@ class nginx::params {
       fail('This module only supports Debian-based systems')
     }
   }
-  $ensure         = present
-  $ensure_running = running
-  $ensure_enable  = true
+  $ensure             = present
+  $ensure_running     = running
+  $ensure_enable      = true
+  $user               = 'www-data'
+  $worker             = $::processorcount*2
+  $worker_connections = 1024
 }
