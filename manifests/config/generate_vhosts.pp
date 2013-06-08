@@ -19,5 +19,6 @@ define nginx::config::generate_vhosts($config){
     proxy_pass          => $config[$name]['proxy_pass'],
     proxy_cache         => $config[$name]['proxy_cache'],
     ownlog              => $config[$name]['ownlog'],
+    error_pages         => $config[$name]['error_pages'],
   }
 }

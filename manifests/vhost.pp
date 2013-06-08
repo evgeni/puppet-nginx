@@ -33,6 +33,7 @@ define nginx::vhost (
   $proxy_pass = undef,
   $proxy_cache = undef,
   $ownlog = true,
+  $error_pages = {},
   ) {
 
   if is_array($altnames) {

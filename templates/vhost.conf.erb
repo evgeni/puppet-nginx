@@ -19,6 +19,10 @@ server {
   error_log /var/log/nginx/<%= name %>-error.log;
 <% end -%>
 
+<% error_pages.each do |code,page| -%>
+  error_page <%= code %> <%= page %>;
+<% end -%>
+
 <% if @strictname -%>
   if ($http_host != "<%= name %>") {
     rewrite ^ $scheme://<%= name %>$uri permanent;
