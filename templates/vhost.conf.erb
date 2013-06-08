@@ -40,7 +40,9 @@ server {
   location <%= location[0] %> {
   <%- location[1].each do |k,v| -%>
    <%- if v != :undef  -%>
-    <%= k %> <%= v %>;
+    <%- v.each do |value| -%>
+    <%= k %> <%= value %>;
+    <%- end -%>
    <%- end -%>
   <%- end -%>
   }
